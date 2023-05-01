@@ -1,5 +1,6 @@
 import RubyObject from './rubyObject.js';
 import RubyNumber from "./rubyNumber.js";
+import RubyArray from "./rubyArray.js";
 
 class RubyString extends RubyObject<string> {
     /**
@@ -46,6 +47,17 @@ class RubyString extends RubyObject<string> {
         const padSize = size - this.js.length;
         const leftPadSize = Math.floor(padSize / 2);
         this.js = this.js.padStart(leftPadSize + this.js.length, padString).padEnd(size, padString);
+        return this;
+    }
+
+    chars(func: (elm: string) => void):RubyString;
+    chars(): RubyArray<string>
+    chars(func: ((elm: string) => void)|null = null):RubyArray<string>|RubyString {
+        const rubyArray = new RubyArray<string>([...this.js]);
+        if (!func) {
+            return rubyArray;
+        }
+        rubyArray.each(func);
         return this;
     }
 
