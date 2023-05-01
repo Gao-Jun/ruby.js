@@ -14,7 +14,7 @@ ruby('foo', s => s.upcase().center(9)) // return ***FOO***
 ## String
 ### Task List
 - [x] capitalize
-- [ ] casecmp
+- [x] casecmp
 - [x] center
 - [ ] chars
 - [ ] chomp

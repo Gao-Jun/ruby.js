@@ -1,4 +1,5 @@
 import RubyObject from './rubyObject.js';
+import RubyNumber from "./rubyNumber.js";
 
 class RubyString extends RubyObject<string> {
     /**
@@ -13,6 +14,21 @@ class RubyString extends RubyObject<string> {
         }
         this.js = firstCharCap + this.js.slice(1).toLowerCase();
         return this;
+    }
+
+    /**
+     * Compares self.downcase and other_string.downcase; returns:
+     *
+     * -1 if other_string.downcase is larger.
+     * 0 if the two are equal.
+     * 1 if other_string.downcase is smaller.
+     * @param other The other string to compare with.
+     */
+    casecmp(other: string): RubyNumber {
+        const thisLowerCase = this.js.toLowerCase();
+        const otherLowerCase = other.toLowerCase();
+        if (thisLowerCase === otherLowerCase) return new RubyNumber(0);
+        return thisLowerCase < otherLowerCase ? new RubyNumber(-1) : new RubyNumber(1);
     }
 
     center(size:number|string, padString = ' '):RubyString {
