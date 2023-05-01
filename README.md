@@ -28,7 +28,7 @@ ruby('foo', s => s.upcase().center(9)) // return ***FOO***
 - [ ] delete
 - [ ] delete_prefix => deletePrefix
 - [ ] delete_suffix => deleteSuffix
-- [ ] downcase
+- [x] downcase
 - [ ] dump
 - [ ] each_char => eachChar
 - [ ] each_codepoint => eachCodepoint

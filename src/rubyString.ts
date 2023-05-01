@@ -33,6 +33,11 @@ class RubyString extends RubyObject<string> {
         return this;
     }
 
+    downcase():RubyString {
+        this.js = this.js.toLowerCase();
+        return this;
+    }
+
     upcase():RubyString {
         this.js = this.js.toUpperCase();
         return this;
