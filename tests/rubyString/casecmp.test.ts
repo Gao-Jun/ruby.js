@@ -1,4 +1,4 @@
-import ruby from "../../src/ruby";
+import ruby from "../../src/ruby.js";
 
 describe('String#casecmp', () => {
     // https://github.com/ruby/ruby/blob/master/test/ruby/test_string.rb#case_cmp
