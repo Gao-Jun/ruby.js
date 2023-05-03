@@ -82,6 +82,12 @@ class RubyString extends RubyObject<string> {
         }
     }
 
+    charAt(index:number = 0):RubyString {
+        const result = this.js.charAt(index);
+        return new RubyString(result);
+    }
+    char_at = this.charAt;
+
 }
 
 export default RubyString;
