@@ -93,6 +93,16 @@ class RubyString extends RubyObject<string> {
         return new RubyNumber(result);
     }
     char_code_at = this.charCodeAt;
+
+    codePointAt(pos:number):RubyNumber|RubyUndefined {
+        const result = this.js.codePointAt(pos);
+        if (result === undefined) {
+            return new RubyUndefined;
+        } else {
+            return new RubyNumber(result);
+        }
+    }
+    code_point_at = this.codePointAt;
 }
 
 export default RubyString;

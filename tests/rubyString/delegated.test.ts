@@ -37,4 +37,18 @@ describe('Delegated function to JS string', () => {
         expect(ruby(sentence, s => s.charCodeAt(100))).toBe(NaN);
         expect(ruby(sentence, s => s.char_code_at(4))).toBe(113);
     });
+
+    test('String#codePointAt', () => {
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt
+        const icons = '☃★♲';
+        expect(ruby(icons, s => s.codePointAt(1))).toBe(9733);
+        expect(ruby('ABC', s => s.codePointAt(0))).toBe(65);
+        expect(ruby('😍', s => s.codePointAt(0))).toBe(128525);
+        expect(ruby('\ud83d\ude0d', s => s.codePointAt(0))).toBe(128525);
+        expect(ruby('😍', s => s.codePointAt(1))).toBe(56845);
+        expect(ruby('\ud83d\ude0d', s => s.codePointAt(1))).toBe(56845);
+        expect(ruby('ABC', s => s.codePointAt(42))).toBe(undefined);
+
+        expect(ruby(icons, s => s.code_point_at(1))).toBe(9733);
+    });
 });
