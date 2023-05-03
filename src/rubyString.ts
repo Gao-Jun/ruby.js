@@ -1,6 +1,7 @@
 import RubyObject from './rubyObject.js';
 import RubyNumber from "./rubyNumber.js";
 import RubyArray from "./rubyArray.js";
+import RubyUndefined from "./rubyUndefined.js";
 
 class RubyString extends RubyObject<string> {
     /**
@@ -70,6 +71,17 @@ class RubyString extends RubyObject<string> {
         this.js = this.js.toUpperCase();
         return this;
     }
+
+    // delegate method to string
+    at(index:number):RubyString|RubyObject<undefined> {
+        const result = this.js.at(index);
+        if (result === undefined) {
+            return new RubyUndefined;
+        } else {
+            return new RubyString(result);
+        }
+    }
+
 }
 
 export default RubyString;
