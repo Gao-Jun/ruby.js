@@ -27,4 +27,14 @@ describe('Delegated function to JS string', () => {
 
         expect(ruby(sentence, s => s.char_at(4))).toBe('q');
     });
+
+    test('String#charCodeAt', () => {
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt
+        const sentence = 'The quick brown fox jumps over the lazy dog.';
+        expect(ruby(sentence, s => s.charCodeAt(4))).toBe(113);
+        expect(ruby('ABC', s => s.charCodeAt(0))).toBe(65);
+
+        expect(ruby(sentence, s => s.charCodeAt(100))).toBe(NaN);
+        expect(ruby(sentence, s => s.char_code_at(4))).toBe(113);
+    });
 });
