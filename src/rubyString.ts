@@ -96,6 +96,12 @@ class RubyString extends RubyObject<string> {
     end_with = this.endWith;
     isEndWith = this.endWith;
 
+    include(otherString:string):RubyBoolean {
+        const result = this.js.includes(otherString);
+        return new RubyBoolean(result);
+    }
+    isInclude = this.include;
+
     /**
      * Returns whether self starts with any of the given string_or_regexp.
      * Matches patterns against the beginning of self
