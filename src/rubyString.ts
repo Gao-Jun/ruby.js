@@ -163,6 +163,14 @@ class RubyString extends RubyObject<string> {
     }
     static from_char_code = this.fromCharCode;
 
+    /**
+     * static method returns a string created by using the specified sequence of code points.
+     */
+    static fromCodePoint(...codePoints: Array<number>):RubyString {
+        const result = String.fromCodePoint(...codePoints);
+        return new RubyString(result);
+    }
+    static from_code_point = this.fromCodePoint;
 }
 
 export default RubyString;
