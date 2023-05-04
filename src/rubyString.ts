@@ -97,6 +97,25 @@ class RubyString extends RubyObject<string> {
     end_with = this.endWith;
     isEndWith = this.endWith;
 
+    /**
+     * Returns whether self starts with any of the given string_or_regexp.
+     * Matches patterns against the beginning of self
+     * @return true if any pattern matches the beginning, false otherwise
+     */
+    startWith(...stringOrRegExps: Array<string|RegExp>): RubyBoolean {
+        const result = stringOrRegExps.some(stringOrRegExp => {
+            if (typeof(stringOrRegExp) === 'string') {
+                return this.js.startsWith(stringOrRegExp);
+            } else { // RegExp, add ^ to the beginning
+                const startRegExp = new RegExp(`^${stringOrRegExp.source}`, stringOrRegExp.flags);
+                return startRegExp.test(this.js);
+            }
+        });
+        return new RubyBoolean(result);
+    }
+    start_with = this.startWith;
+    isStartWith = this.startWith;
+
     upcase():RubyString {
         this.js = this.js.toUpperCase();
         return this;
