@@ -79,4 +79,17 @@ describe('Delegated function to JS string', () => {
         expect(ruby(() => RubyString.fromCodePoint(0xd83c, 0xdf03))).toBe('\uD83C\uDF03'); // Code Point U+1F303 "Night with Stars" === "\uD83C\uDF03"
         expect(ruby(() => RubyString.fromCodePoint(55356, 57091))).toBe('\uD83C\uDF03');
     });
+
+    test('String#includes', () => {
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes
+        const sentence = 'The quick brown fox jumps over the lazy dog.';
+        expect(ruby(sentence, s => s.includes('fox'))).toBe(true);
+        const str = "To be, or not to be, that is the question.";
+        expect(ruby(str, s => s.includes('To be'))).toBe(true);
+        expect(ruby(str, s => s.includes('question'))).toBe(true);
+        expect(ruby(str, s => s.includes('nonexistent'))).toBe(false);
+        expect(ruby(str, s => s.includes('To be', 1))).toBe(false);
+        expect(ruby(str, s => s.includes('TO BE'))).toBe(false);
+        expect(ruby(str, s => s.includes(''))).toBe(true);
+    });
 });

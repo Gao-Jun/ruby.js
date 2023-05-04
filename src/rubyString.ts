@@ -152,6 +152,18 @@ class RubyString extends RubyObject<string> {
     }
     code_point_at = this.codePointAt;
 
+    /**
+     * This method lets you determine whether or not a string includes another string.
+     * @param searchString A string to be searched for within str. Cannot be a regex. All values that are not regexes
+     *  are coerced to strings, so omitting it or passing undefined causes includes() to search for the string
+     *  "undefined", which is rarely what you want.
+     * @param position The position within the string at which to begin searching for searchString. (Defaults to 0.)
+     */
+    includes(searchString:string, position = 0):RubyBoolean {
+        const result = this.js.includes(searchString, position);
+        return new RubyBoolean(result);
+    }
+
     // static delegation methods
 
     /**
