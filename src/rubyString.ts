@@ -62,6 +62,24 @@ class RubyString extends RubyObject<string> {
         return this;
     }
 
+    /**
+     * Concatenates each object in objects to self and returns self:
+     * For each given object object that is an Integer, the value is considered a codepoint and converted to a
+     * character before concatenation:
+     * @param strings
+     */
+    concat(...strings: Array<string|number>):RubyString {
+        console.log('-----', this.js, '-----', strings)
+        strings = strings.map(element => {
+            if (typeof(element) === 'number') {
+                element = String.fromCharCode(element);
+            }
+            return element;
+        })
+        this.js += strings.join('');
+        return this;
+    }
+
     downcase():RubyString {
         this.js = this.js.toLowerCase();
         return this;
