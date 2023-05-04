@@ -70,7 +70,6 @@ class RubyString extends RubyObject<string> {
      * @param strings
      */
     concat(...strings: Array<string|number>):RubyString {
-        console.log('-----', this.js, '-----', strings)
         strings = strings.map(element => {
             if (typeof(element) === 'number') {
                 element = String.fromCharCode(element);
