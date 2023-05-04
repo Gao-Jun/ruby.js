@@ -22,7 +22,7 @@ ruby('foo', s => s.upcase().center(9)) // return ***FOO***
 - [ ] chr
 - [ ] clear
 - [ ] codepoints
-- [ ] concat
+- [x] concat
 - [ ] count
 - [ ] crypt
 - [ ] delete
@@ -34,12 +34,12 @@ ruby('foo', s => s.upcase().center(9)) // return ***FOO***
 - [ ] each_codepoint => eachCodepoint
 - [ ] each_line => eachLine
 - [ ] empty? => empty / isEmpty
-- [ ] end_with? => end_with / endWith / isEndWith
+- [x] end_with? => end_with / endWith / isEndWith
 - [ ] eql? => eql / isEql
 - [ ] gsub
 - [ ] hash
 - [ ] hex
-- [ ] include? => include / isInclude
+- [x] include? => include / isInclude
 - [ ] index
 - [ ] initialize_copy
 - [ ] insert
@@ -67,7 +67,7 @@ ruby('foo', s => s.upcase().center(9)) // return ***FOO***
 - [ ] slice
 - [ ] split
 - [ ] squeeze
-- [ ] start_with? => start_with / startWith / isStartWith
+- [x] start_with? => start_with / startWith / isStartWith
 - [ ] strip
 - [ ] sub
 - [ ] succ
