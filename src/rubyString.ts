@@ -152,6 +152,18 @@ class RubyString extends RubyObject<string> {
         }
     }
     code_point_at = this.codePointAt;
+
+    // static delegation methods
+
+    /**
+     * static method returns a string created from the specified sequence of UTF-16 code units.
+     */
+    static fromCharCode(...charCodes: Array<number>):RubyString {
+        const result = String.fromCharCode(...charCodes);
+        return new RubyString(result);
+    }
+    static from_char_code = this.fromCharCode;
+
 }
 
 export default RubyString;

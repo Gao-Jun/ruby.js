@@ -1,4 +1,5 @@
 import ruby from "../../src/ruby.js"
+import RubyString from "../../src/rubyString.js";
 
 describe('Delegated function to JS string', () => {
     test('String#at', () => {
@@ -50,5 +51,19 @@ describe('Delegated function to JS string', () => {
         expect(ruby('ABC', s => s.codePointAt(42))).toBe(undefined);
 
         expect(ruby(icons, s => s.code_point_at(1))).toBe(9733);
+    });
+
+    // static methods
+    test('String.fromCharCode', () => {
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode
+        expect(ruby(() => RubyString.fromCharCode(189, 43, 190, 61))).toBe('½+¾=');
+        expect(ruby(() => RubyString.fromCharCode(65, 66, 67))).toBe('ABC');
+        expect(ruby(() => RubyString.fromCharCode(0x2014))).toBe('—');
+        expect(ruby(() => RubyString.fromCharCode(0x12014))).toBe('—');
+        expect(ruby(() => RubyString.fromCharCode(0xd83c, 0xdf03))).toBe('\uD83C\uDF03'); // Code Point U+1F303 "Night with Stars" === "\uD83C\uDF03"
+        expect(ruby(() => RubyString.fromCharCode(55356, 57091))).toBe('\uD83C\uDF03');
+        expect(ruby(() => RubyString.fromCharCode(0xd834, 0xdf06, 0x61, 0xd834, 0xdf07))).toBe('\uD834\uDF06a\uD834\uDF07');
+
+        expect(ruby(() => RubyString.from_char_code(189, 43, 190, 61))).toBe('½+¾=');
     });
 });
