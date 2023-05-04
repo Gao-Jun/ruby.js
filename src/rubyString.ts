@@ -2,6 +2,7 @@ import RubyObject from './rubyObject.js';
 import RubyNumber from "./rubyNumber.js";
 import RubyArray from "./rubyArray.js";
 import RubyUndefined from "./rubyUndefined.js";
+import RubyBoolean from "./rubyBoolean.js";
 
 class RubyString extends RubyObject<string> {
     /**
@@ -84,6 +85,17 @@ class RubyString extends RubyObject<string> {
         this.js = this.js.toLowerCase();
         return this;
     }
+
+    /**
+     * Returns whether self ends with any of the given strings.
+     * Returns true if any given string matches the end, false otherwise:
+     */
+    endWith(...strings: Array<string>): RubyBoolean {
+        const result = strings.some(str => this.js.endsWith(str));
+        return new RubyBoolean(result);
+    }
+    end_with = this.endWith;
+    isEndWith = this.endWith;
 
     upcase():RubyString {
         this.js = this.js.toUpperCase();
