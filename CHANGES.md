@@ -29,6 +29,7 @@
   - ➕ `search`
   - ➕ `slice` => `jsSlice` / `js_slice`
   - ➕ `substring`
+  - ➕ `toLocaleLowerCase` / `to_locale_lower_case`
 
 ## 0.0.1 - 2023-04-28
 

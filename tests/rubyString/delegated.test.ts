@@ -272,4 +272,17 @@ describe('Delegated function to JS string', () => {
         expect(ruby('Mozilla', s => s.substring(-5, 2))).toBe('Mo');
         expect(ruby('Mozilla', s => s.substring(-5, -2))).toBe('');
     });
+
+    test('String#toLocaleLowerCase', () => {
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleLowerCase
+        const dotted = 'İstanbul';
+        expect(ruby(dotted, s => s.toLocaleLowerCase('en-US'))).toBe('i̇stanbul');
+        expect(ruby(dotted, s => s.toLocaleLowerCase('tr'))).toBe('istanbul');
+        expect(ruby('ALPHABET', s => s.toLocaleLowerCase())).toBe('alphabet');
+        expect(ruby('ALPHABET', s => s.to_locale_lower_case())).toBe('alphabet');
+        expect(ruby('\u0130', s => s.toLocaleLowerCase('tr'))).toBe('i');
+        expect(ruby('\u0130', s => s.toLocaleLowerCase('en-US'))).not.toBe('i');
+        const locales = ['tr', 'TR', 'tr-TR', 'tr-u-co-search', 'tr-x-turkish'];
+        expect(ruby('\u0130', s => s.toLocaleLowerCase(locales))).toBe('i');
+    });
 });
