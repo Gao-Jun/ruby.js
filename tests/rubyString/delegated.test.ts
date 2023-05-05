@@ -139,4 +139,20 @@ describe('Delegated function to JS string', () => {
         expect(ruby('ä', s => s.localeCompare('a', 'de', { sensitivity: 'base' }))).toBe(0);
         expect(ruby('ä', s => s.localeCompare('a', 'sv', { sensitivity: 'base' }))).toBeGreaterThan(0);
     });
+
+    test('String#normalize', () => {
+        const name1 = '\u0041\u006d\u00e9\u006c\u0069\u0065';
+        const name2 = '\u0041\u006d\u0065\u0301\u006c\u0069\u0065';
+        expect(ruby(name1, s => s.normalize('NFC'))).toBe(name2.normalize('NFC'));
+        expect(ruby('\u00F1', s => s.normalize('NFC'))).toBe('ñ');
+        expect(ruby('\u006E\u0303', s => s.normalize('NFC'))).toBe('ñ');
+        expect(ruby('\u00F1', s => s.normalize('NFD'))).toBe('\u006E\u0303'.normalize('NFD'));
+        expect(ruby('\uFB00', s => s.normalize('NFKD'))).toBe('ff');
+        const str = '\u1E9B\u0323';
+        expect(ruby(str, s => s.normalize('NFC'))).toBe('\u1E9B\u0323');
+        expect(ruby(str, s => s.normalize())).toBe('\u1E9B\u0323');
+        expect(ruby(str, s => s.normalize('NFD'))).toBe('\u017F\u0323\u0307');
+        expect(ruby(str, s => s.normalize('NFKC'))).toBe('\u1E69');
+        expect(ruby(str, s => s.normalize('NFKD'))).toBe('\u0073\u0323\u0307');
+    });
 });

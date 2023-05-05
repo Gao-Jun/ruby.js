@@ -188,6 +188,14 @@ class RubyString extends RubyObject<string> {
     }
     locale_compare = this.localeCompare;
 
+    /**
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize
+     */
+    normalize(form?: 'NFC' | 'NFD' | 'NFKC' | 'NFKD'):RubyString {
+        const result = this.js.normalize(form);
+        return new RubyString(result);
+    }
+
     // static delegation methods
 
     /**
