@@ -26,6 +26,7 @@
   - ➕ `repeat`
   - ➕ `replace` => `jsReplace` / `js_replace`
   - ➕ `replaceAll` / `replace_all`
+  - ➕ `search`
 
 ## 0.0.1 - 2023-04-28
 

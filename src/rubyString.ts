@@ -246,6 +246,14 @@ class RubyString extends RubyObject<string> {
     }
     replace_all = this.replaceAll;
 
+    /**
+     * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search
+     */
+    search(regexp: string | RegExp): RubyNumber {
+        const result = this.js.search(regexp);
+        return new RubyNumber(result);
+    }
+
     // static delegation methods
 
     /**

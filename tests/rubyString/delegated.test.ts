@@ -229,4 +229,11 @@ describe('Delegated function to JS string', () => {
         expect(ruby('aabbcc', s => s.replace_all('b', '.'))).toBe('aa..cc');
         expect(ruby('aabbcc', s => s.replaceAll(/b/g, '.'))).toBe('aa..cc');
     });
+
+    test('String#search', () => {
+        const paragraph = 'The quick brown fox jumps over the lazy dog. If the dog barked, was it really lazy?'
+        expect(ruby(paragraph, s => s.search(/[^\w\s]/g))).toBe(43);
+        expect(ruby('hey JudE', s => s.search(/[A-Z]/))).toBe(4);
+        expect(ruby('hey JudE', s => s.search(/[.]/))).toBe(-1);
+    });
 });
