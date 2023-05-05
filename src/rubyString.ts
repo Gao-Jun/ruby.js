@@ -136,13 +136,13 @@ class RubyString extends RubyObject<string> {
         }
     }
 
-    charAt(index:number = 0):RubyString {
+    charAt(index = 0):RubyString {
         const result = this.js.charAt(index);
         return new RubyString(result);
     }
     char_at = this.charAt;
 
-    charCodeAt(index:number = 0):RubyNumber {
+    charCodeAt(index = 0):RubyNumber {
         const result = this.js.charCodeAt(index);
         return new RubyNumber(result);
     }

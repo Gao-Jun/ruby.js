@@ -5,7 +5,7 @@ import RubyArray from "./rubyArray.js";
 
 function ruby<V>(js: string, func: (rubyObj: RubyString) => RubyObject<V>): V;
 function ruby<T, V>(js: Array<T>, func: (rubyObj: RubyArray<T>) => RubyObject<V>): V;
-function ruby<V>(js: Iterable<any>, func: (rubyObj: RubyEnumerable) => RubyObject<V>): V;
+function ruby<T, V>(js: Iterable<T>, func: (rubyObj: RubyEnumerable<T>) => RubyObject<V>): V;
 function ruby<V>(func: () => RubyObject<V>): V;
 
 function ruby<V>(js_or_func: any, func?: (rubyObj?: any) => RubyObject<V>): V {

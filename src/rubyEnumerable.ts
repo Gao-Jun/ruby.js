@@ -2,8 +2,8 @@ import RubyObject from './rubyObject.js';
 import RubyBoolean from './rubyBoolean.js';
 import RubyNil from "./rubyNil.js";
 
-class RubyEnumerable extends RubyObject<Iterable<any>> {
-    each(func: (elm: any) => void | Symbol): RubyEnumerable|RubyNil{
+class RubyEnumerable<T> extends RubyObject<Iterable<T>> {
+    each(func: (elm: T) => void | symbol): RubyEnumerable<T>|RubyNil{
         for (const elm of this.js) {
             const result = func(elm);
             if (result === Symbol('break')) {
@@ -13,7 +13,7 @@ class RubyEnumerable extends RubyObject<Iterable<any>> {
         return this;
     }
 
-    include(value: any): RubyBoolean {
+    include(value: T): RubyBoolean {
         let result;
         this.each((elm) => {
             if (elm === value) {
