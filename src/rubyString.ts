@@ -254,6 +254,17 @@ class RubyString extends RubyObject<string> {
         return new RubyNumber(result);
     }
 
+    /**
+     * Since Ruby String#slice has different behavior than JavaScript String#slice,
+     * JavaScript String#slice is delegated by String#jsSlice.
+     * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice
+     */
+    jsSlice(indexStart: number, indexEnd?: number): RubyString {
+        const result = this.js.slice(indexStart, indexEnd);
+        return new RubyString(result);
+    }
+    js_slice = this.jsSlice;
+
     // static delegation methods
 
     /**

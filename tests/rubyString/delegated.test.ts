@@ -236,4 +236,24 @@ describe('Delegated function to JS string', () => {
         expect(ruby('hey JudE', s => s.search(/[A-Z]/))).toBe(4);
         expect(ruby('hey JudE', s => s.search(/[.]/))).toBe(-1);
     });
+
+    test('String#slice renamed to jsSlice', () => {
+        const str = 'The quick brown fox jumps over the lazy dog.';
+        expect(ruby(str, s => s.jsSlice(31))).toBe('the lazy dog.');
+        expect(ruby(str, s => s.jsSlice(4, 19))).toBe('quick brown fox');
+        expect(ruby(str, s => s.js_slice(4, 19))).toBe('quick brown fox');
+        expect(ruby(str, s => s.jsSlice(-4))).toBe('dog.');
+        expect(ruby(str, s => s.jsSlice(-9, -5))).toBe('lazy');
+        const str1 = 'The morning is upon us.';
+        expect(ruby(str1, s => s.jsSlice(1, 8))).toBe('he morn');
+        expect(ruby(str1, s => s.jsSlice(4, -2))).toBe('morning is upon u');
+        expect(ruby(str1, s => s.jsSlice(12))).toBe('is upon us.');
+        expect(ruby(str1, s => s.jsSlice(30))).toBe('');
+        expect(ruby(str1, s => s.jsSlice(-3))).toBe('us.');
+        expect(ruby(str1, s => s.jsSlice(-3, -1))).toBe('us');
+        expect(ruby(str1, s => s.jsSlice(0, -1))).toBe('The morning is upon us');
+        expect(ruby(str1, s => s.jsSlice(4, -1))).toBe('morning is upon us');
+        expect(ruby(str1, s => s.jsSlice(-11, 16))).toBe('is u');
+        expect(ruby(str1, s => s.jsSlice(-5, -1))).toBe('n us');
+    });
 });
