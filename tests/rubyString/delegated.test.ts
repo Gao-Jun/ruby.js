@@ -155,4 +155,14 @@ describe('Delegated function to JS string', () => {
         expect(ruby(str, s => s.normalize('NFKC'))).toBe('\u1E69');
         expect(ruby(str, s => s.normalize('NFKD'))).toBe('\u0073\u0323\u0307');
     });
+
+    test('String#padEnd', () => {
+        expect(ruby('Breaded Mushrooms', s => s.padEnd(25, '.'))).toBe('Breaded Mushrooms........');
+        expect(ruby('200', s => s.padEnd(5))).toBe('200  ');
+        expect(ruby('abc', s => s.padEnd(10))).toBe('abc       ');
+        expect(ruby('abc', s => s.padEnd(10, 'foo'))).toBe('abcfoofoof');
+        expect(ruby('abc', s => s.pad_end(10, 'foo'))).toBe('abcfoofoof');
+        expect(ruby('abc', s => s.padEnd(6, '123456'))).toBe('abc123');
+        expect(ruby('abc', s => s.padEnd(1))).toBe('abc');
+    });
 });

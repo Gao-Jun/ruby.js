@@ -21,6 +21,7 @@
   - ➕ `indexOf` / `index_of`
   - ➕ `localeCompare` / `locale_compare`
   - ➕ `normalize`
+  - ➕ `padEnd` / `pad_end`
 
 ## 0.0.1 - 2023-04-28
 
