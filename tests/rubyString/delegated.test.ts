@@ -213,4 +213,20 @@ describe('Delegated function to JS string', () => {
         expect(ruby('abcd', s => s.jsReplace(/(bc)/, (match, p1, offset) => `${match} (${offset})`)))
             .toBe('abc (1)d');
     });
+
+    test('String#replaceAll', () => {
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replaceAll
+        const p = 'The quick brown fox jumps over the lazy dog. If the dog reacted, was it really lazy?';
+        expect(ruby(p, s => s.replaceAll('dog', 'monkey')))
+            .toBe('The quick brown fox jumps over the lazy monkey. If the monkey reacted, was it really lazy?');
+        expect(ruby(p, s => s.replaceAll(/Dog/ig, 'ferret')))
+            .toBe('The quick brown fox jumps over the lazy ferret. If the ferret reacted, was it really lazy?');
+        const report = 'A hacker called ha.*er used special characters in their name to breach the system.';
+        expect(ruby(report, s => s.replaceAll('ha.*er', '[REDACTED]')))
+            .toBe('A hacker called [REDACTED] used special characters in their name to breach the system.');
+        expect(ruby('xxx', s => s.replaceAll('', '_'))).toBe('_x_x_x_');
+        expect(ruby('aabbcc', s => s.replaceAll('b', '.'))).toBe('aa..cc');
+        expect(ruby('aabbcc', s => s.replace_all('b', '.'))).toBe('aa..cc');
+        expect(ruby('aabbcc', s => s.replaceAll(/b/g, '.'))).toBe('aa..cc');
+    });
 });

@@ -235,6 +235,17 @@ class RubyString extends RubyObject<string> {
     }
     js_replace = this.jsReplace;
 
+    /**
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replaceAll
+     */
+    replaceAll(searchValue: string | RegExp, replaceValue: string | ((substring: string, ...args: any[]) => string)): RubyString {
+        // TypeScript bug?
+        const result = typeof(replaceValue) === 'string' ?
+            this.js.replaceAll(searchValue, replaceValue) : this.js.replaceAll(searchValue, replaceValue);
+        return new RubyString(result);
+    }
+    replace_all = this.replaceAll;
+
     // static delegation methods
 
     /**
