@@ -18,6 +18,7 @@
   - ➕ `fromCharCode` / `from_char_code`
   - ➕ `fromCodePoint` / `from_code_point`
   - ➕ `includes`
+  - ➕ `indexOf` / `index_of`
 
 ## 0.0.1 - 2023-04-28
 

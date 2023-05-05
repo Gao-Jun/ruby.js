@@ -92,4 +92,35 @@ describe('Delegated function to JS string', () => {
         expect(ruby(str, s => s.includes('TO BE'))).toBe(false);
         expect(ruby(str, s => s.includes(''))).toBe(true);
     });
+
+    test('String#indexOf', () => {
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf
+        const paragraph = 'The quick brown fox jumps over the lazy dog. If the dog barked, was it really lazy?';
+        const indexOfFirst = ruby(paragraph, s => s.indexOf('dog'));
+        expect(indexOfFirst).toBe(40);
+        expect(ruby(paragraph, s => s.indexOf('dog', indexOfFirst + 1))).toBe(52);
+        expect(ruby('hello world', s => s.indexOf(''))).toBe(0);
+        expect(ruby('hello world', s => s.indexOf('', 0))).toBe(0);
+        expect(ruby('hello world', s => s.indexOf('', 3))).toBe(3);
+        expect(ruby('hello world', s => s.indexOf('', 8))).toBe(8);
+        expect(ruby('hello world', s => s.indexOf('', 11))).toBe(11);
+        expect(ruby('hello world', s => s.indexOf('', 13))).toBe(11);
+        expect(ruby('hello world', s => s.indexOf('', 22))).toBe(11);
+        expect(ruby('Blue Whale', s => s.indexOf('Blue'))).toBe(0);
+        expect(ruby('Blue Whale', s => s.indexOf('Blut'))).toBe(-1);
+        expect(ruby('Blue Whale', s => s.indexOf('Whale', 0))).toBe(5);
+        expect(ruby('Blue Whale', s => s.indexOf('Whale', 5))).toBe(5);
+        expect(ruby('Blue Whale', s => s.indexOf('Whale', 7))).toBe(-1);
+        expect(ruby('Blue Whale', s => s.indexOf(''))).toBe(0);
+        expect(ruby('Blue Whale', s => s.indexOf('', 9))).toBe(9);
+        expect(ruby('Blue Whale', s => s.indexOf('', 10))).toBe(10);
+        expect(ruby('Blue Whale', s => s.indexOf('', 11))).toBe(10);
+        expect(ruby('Blue Whale', s => s.indexOf('blue'))).toBe(-1);
+        expect(ruby('Brave new world', s => s.indexOf('w'))).toBe(8);
+        expect(ruby('Brave new world', s => s.indexOf('new'))).toBe(6);
+        expect(ruby('brie, pepper jack, cheddar', s => s.indexOf('cheddar'))).toBe(19);
+        expect(ruby('Brie, Pepper Jack, Cheddar', s => s.indexOf('cheddar'))).toBe(-1);
+
+        expect(ruby('brie, pepper jack, cheddar', s => s.index_of('cheddar'))).toBe(19);
+    });
 });

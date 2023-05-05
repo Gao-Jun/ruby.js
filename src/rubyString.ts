@@ -170,6 +170,15 @@ class RubyString extends RubyObject<string> {
         return new RubyBoolean(result);
     }
 
+    /**
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf
+     */
+    indexOf(searchString:string, position = 0):RubyNumber {
+        const result = this.js.indexOf(searchString, position);
+        return new RubyNumber(result);
+    }
+    index_of = this.indexOf;
+
     // static delegation methods
 
     /**
