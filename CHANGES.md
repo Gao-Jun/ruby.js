@@ -19,6 +19,7 @@
   - ➕ `fromCodePoint` / `from_code_point`
   - ➕ `includes`
   - ➕ `indexOf` / `index_of`
+  - ➕ `localeCompare` / `locale_compare`
 
 ## 0.0.1 - 2023-04-28
 

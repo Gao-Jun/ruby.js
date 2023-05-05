@@ -123,4 +123,20 @@ describe('Delegated function to JS string', () => {
 
         expect(ruby('brie, pepper jack, cheddar', s => s.index_of('cheddar'))).toBe(19);
     });
+
+    test('String#localeCompare', () => {
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
+        const a = 'réservé'; // With accents, lowercase
+        const b = 'RESERVE'; // No accents, uppercase
+        expect(ruby(a, s => s.localeCompare(b, 'en'))).toBe(1);
+        expect(ruby(a, s => s.localeCompare(b, 'en', { sensitivity: 'base' }))).toBe(0);
+        expect(ruby(a, s => s.locale_compare(b, 'en', { sensitivity: 'base' }))).toBe(0);
+        expect(ruby('a', s => s.localeCompare('c'))).toBeLessThan(0);
+        expect(ruby('check', s => s.localeCompare('against'))).toBeGreaterThan(0);
+        expect(ruby('a', s => s.localeCompare('a'))).toBe(0);
+        expect(ruby('ä', s => s.localeCompare('z', 'de'))).toBeLessThan(0);
+        expect(ruby('ä', s => s.localeCompare('z', 'sv'))).toBeGreaterThan(0);
+        expect(ruby('ä', s => s.localeCompare('a', 'de', { sensitivity: 'base' }))).toBe(0);
+        expect(ruby('ä', s => s.localeCompare('a', 'sv', { sensitivity: 'base' }))).toBeGreaterThan(0);
+    });
 });

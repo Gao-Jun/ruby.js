@@ -179,6 +179,15 @@ class RubyString extends RubyObject<string> {
     }
     index_of = this.indexOf;
 
+    /**
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
+     */
+    localeCompare(compareString:string, locales?: string, options?: Intl.CollatorOptions):RubyNumber {
+        const result = this.js.localeCompare(compareString, locales, options);
+        return new RubyNumber(result);
+    }
+    locale_compare = this.localeCompare;
+
     // static delegation methods
 
     /**
