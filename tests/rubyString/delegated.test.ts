@@ -176,4 +176,14 @@ describe('Delegated function to JS string', () => {
         expect(ruby('abc', s => s.padStart(8, '0'))).toBe('00000abc');
         expect(ruby('abc', s => s.padStart(1))).toBe('abc');
     });
+
+    test('String#repeat', () => {
+        expect(ruby('Happy! ', s => s.repeat(3))).toBe('Happy! Happy! Happy! ');
+        expect(() => ruby('abc', s => s.repeat(-1))).toThrow(RangeError);
+        expect(ruby('abc', s => s.repeat(0))).toBe('');
+        expect(ruby('abc', s => s.repeat(1))).toBe('abc');
+        expect(ruby('abc', s => s.repeat(2))).toBe('abcabc');
+        expect(ruby('abc', s => s.repeat(3.5))).toBe('abcabcabc');
+        expect(() => ruby('abc', s => s.repeat(1/0))).toThrow(RangeError);
+    });
 });

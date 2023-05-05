@@ -23,6 +23,7 @@
   - ➕ `normalize`
   - ➕ `padEnd` / `pad_end`
   - ➕ `padStart` / `pad_start`
+  - ➕ `repeat`
 
 ## 0.0.1 - 2023-04-28
 

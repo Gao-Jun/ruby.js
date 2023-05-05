@@ -214,6 +214,14 @@ class RubyString extends RubyObject<string> {
     }
     pad_start = this.padStart;
 
+    /**
+     * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/repeat
+     */
+    repeat(count:number): RubyString {
+        const result = this.js.repeat(count);
+        return new RubyString(result);
+    }
+
     // static delegation methods
 
     /**
