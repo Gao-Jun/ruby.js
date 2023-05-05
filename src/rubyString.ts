@@ -222,6 +222,19 @@ class RubyString extends RubyObject<string> {
         return new RubyString(result);
     }
 
+    /**
+     * Since Ruby String#replace has different behavior than JavaScript String#replace,
+     * JavaScript String#replace is delegated by String#jsReplace.
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace
+     */
+    jsReplace(pattern: string | RegExp, replaceValue: string | ((substring: string, ...args: any[]) => string)): RubyString {
+        // TypeScript bug?
+        const result = typeof(replaceValue) === 'string' ?
+            this.js.replace(pattern, replaceValue) : this.js.replace(pattern, replaceValue);
+        return new RubyString(result);
+    }
+    js_replace = this.jsReplace;
+
     // static delegation methods
 
     /**

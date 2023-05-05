@@ -186,4 +186,31 @@ describe('Delegated function to JS string', () => {
         expect(ruby('abc', s => s.repeat(3.5))).toBe('abcabcabc');
         expect(() => ruby('abc', s => s.repeat(1/0))).toThrow(RangeError);
     });
+
+    test('String#replace renamed to jsReplace', () => {
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace
+        const p = 'The quick brown fox jumps over the lazy dog. If the dog reacted, was it really lazy?';
+        expect(ruby(p, s => s.jsReplace('dog', 'monkey')))
+            .toBe('The quick brown fox jumps over the lazy monkey. If the dog reacted, was it really lazy?');
+        expect(ruby(p, s => s.js_replace('dog', 'monkey')))
+            .toBe('The quick brown fox jumps over the lazy monkey. If the dog reacted, was it really lazy?');
+        expect(ruby(p, s => s.jsReplace(/Dog/i, 'ferret')))
+            .toBe('The quick brown fox jumps over the lazy ferret. If the dog reacted, was it really lazy?');
+        expect(ruby('xxx', s => s.jsReplace('', '_'))).toBe('_xxx');
+        expect(ruby('foo', s => s.jsReplace(/(f)/, '$2'))).toBe('$2oo');
+        expect(ruby('foo', s => s.jsReplace('f', '$1'))).toBe('$1oo');
+        expect(ruby('foo', s => s.jsReplace(/(f)|(g)/, '$2'))).toBe('oo');
+
+        const replacer = (match:string, p1:string, p2:string, p3:string, offset:number, string:string) => [p1, p2, p3].join(' - ');
+        expect(ruby('abc12345#$*%', s => s.jsReplace(/([^\d]*)(\d*)([^\w]*)/, replacer))).toBe('abc - 12345 - #$*%');
+
+        const str = 'Twas the night before Xmas...';
+        expect(ruby(str, s => s.jsReplace(/xmas/i, 'Christmas'))).toBe('Twas the night before Christmas...');
+
+        expect(ruby('Apples are round, and apples are juicy.', s => s.jsReplace(/apples/gi, 'oranges')))
+            .toBe('oranges are round, and oranges are juicy.');
+        expect(ruby('Maria Cruz', s => s.jsReplace(/(\w+)\s(\w+)/, "$2, $1"))).toBe('Cruz, Maria');
+        expect(ruby('abcd', s => s.jsReplace(/(bc)/, (match, p1, offset) => `${match} (${offset})`)))
+            .toBe('abc (1)d');
+    });
 });
