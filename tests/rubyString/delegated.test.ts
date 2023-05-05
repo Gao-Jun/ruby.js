@@ -285,4 +285,17 @@ describe('Delegated function to JS string', () => {
         const locales = ['tr', 'TR', 'tr-TR', 'tr-u-co-search', 'tr-x-turkish'];
         expect(ruby('\u0130', s => s.toLocaleLowerCase(locales))).toBe('i');
     });
+
+    test('String#toLocaleUpperCase', () => {
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleUpperCase
+        const city = 'istanbul';
+        expect(ruby(city, s => s.toLocaleUpperCase('en-US'))).toBe('ISTANBUL');
+        expect(ruby(city, s => s.toLocaleUpperCase('TR'))).toBe('İSTANBUL');
+        expect(ruby('alphabet', s => s.toLocaleUpperCase())).toBe('ALPHABET');
+        expect(ruby('alphabet', s => s.to_locale_upper_case())).toBe('ALPHABET');
+        expect(ruby('Gesäß', s => s.toLocaleUpperCase())).toBe('GESÄSS');
+        expect(ruby('i\u0307', s => s.toLocaleUpperCase('lt-LT'))).toBe('I');
+        const locales = ['lt', 'LT', 'lt-LT', 'lt-u-co-phonebk', 'lt-x-lietuva'];
+        expect(ruby('i\u0307', s => s.toLocaleUpperCase(locales))).toBe('I');
+    });
 });

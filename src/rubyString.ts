@@ -275,6 +275,15 @@ class RubyString extends RubyObject<string> {
     to_locale_lower_case = this.toLocaleLowerCase;
 
     /**
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleUpperCase
+     */
+    toLocaleUpperCase(locales?: string | string[]): RubyString {
+        const result = this.js.toLocaleUpperCase(locales);
+        return new RubyString(result);
+    }
+    to_locale_upper_case = this.toLocaleUpperCase;
+
+    /**
      * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring
      */
     substring(indexStart: number, indexEnd?: number): RubyString {
