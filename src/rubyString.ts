@@ -205,6 +205,15 @@ class RubyString extends RubyObject<string> {
     }
     pad_end = this.padEnd;
 
+    /**
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart
+     */
+    padStart(targetLength: number, padString?: string): RubyString {
+        const result = this.js.padStart(targetLength, padString);
+        return new RubyString(result);
+    }
+    pad_start = this.padStart;
+
     // static delegation methods
 
     /**

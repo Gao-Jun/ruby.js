@@ -165,4 +165,15 @@ describe('Delegated function to JS string', () => {
         expect(ruby('abc', s => s.padEnd(6, '123456'))).toBe('abc123');
         expect(ruby('abc', s => s.padEnd(1))).toBe('abc');
     });
+
+    test('String#padStart', () => {
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart
+        expect(ruby('5', s => s.padStart(2, '0'))).toBe('05');
+        expect(ruby('5581', s => s.padStart(16, '*'))).toBe('************5581');
+        expect(ruby('abc', s => s.padStart(10))).toBe('       abc');
+        expect(ruby('abc', s => s.padStart(10))).toBe('       abc');
+        expect(ruby('abc', s => s.padStart(10, 'foo'))).toBe('foofoofabc');
+        expect(ruby('abc', s => s.padStart(8, '0'))).toBe('00000abc');
+        expect(ruby('abc', s => s.padStart(1))).toBe('abc');
+    });
 });
