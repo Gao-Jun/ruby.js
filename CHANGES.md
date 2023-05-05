@@ -28,6 +28,7 @@
   - ➕ `replaceAll` / `replace_all`
   - ➕ `search`
   - ➕ `slice` => `jsSlice` / `js_slice`
+  - ➕ `substring`
 
 ## 0.0.1 - 2023-04-28
 

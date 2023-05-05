@@ -256,4 +256,20 @@ describe('Delegated function to JS string', () => {
         expect(ruby(str1, s => s.jsSlice(-11, 16))).toBe('is u');
         expect(ruby(str1, s => s.jsSlice(-5, -1))).toBe('n us');
     });
+
+    test('String#substring', () => {
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring
+        expect(ruby('Mozilla', s => s.substring(1, 3))).toBe('oz');
+        expect(ruby('Mozilla', s => s.substring(2))).toBe('zilla');
+        expect(ruby('Mozilla', s => s.substring(0, 1))).toBe('M');
+        expect(ruby('Mozilla', s => s.substring(1, 0))).toBe('M');
+        expect(ruby('Mozilla', s => s.substring(0, 6))).toBe('Mozill');
+        expect(ruby('Mozilla', s => s.substring(4))).toBe('lla');
+        expect(ruby('Mozilla', s => s.substring(4, 7))).toBe('lla');
+        expect(ruby('Mozilla', s => s.substring(7, 4))).toBe('lla');
+        expect(ruby('Mozilla', s => s.substring(0, 7))).toBe('Mozilla');
+        expect(ruby('Mozilla', s => s.substring(0, 10))).toBe('Mozilla');
+        expect(ruby('Mozilla', s => s.substring(-5, 2))).toBe('Mo');
+        expect(ruby('Mozilla', s => s.substring(-5, -2))).toBe('');
+    });
 });
