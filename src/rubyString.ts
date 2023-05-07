@@ -148,7 +148,12 @@ class RubyString extends RubyObject<string> {
         return new RubyString(result);
     }
 
-    // delegate method to string
+    // delegate properties and methods to string
+    get length() {
+        const result = this.js.length;
+        return new RubyNumber(result);
+    }
+
     at(index:number):RubyString|RubyObject<undefined> {
         const result = this.js.at(index);
         if (result === undefined) {

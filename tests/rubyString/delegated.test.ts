@@ -2,6 +2,15 @@ import ruby from "../../src/ruby.js"
 import RubyString from "../../src/rubyString.js";
 
 describe('Delegated function to JS string', () => {
+    test('String#length', () => {
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/length
+        expect(ruby('Life, the universe and everything. Answer:', s => s.length)).toBe(42);
+        expect(ruby('Mozilla', s => s.length)).toBe(7);
+        expect(ruby('', s => s.length)).toBe(0);
+        expect(ruby('😄', s => s.length)).toBe(2);
+        expect(ruby('∀𝑥∈ℝ,𝑥²≥0', s => s.length)).toBe(11);
+    });
+
     test('String#at', () => {
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/at
         const sentence = 'The quick brown fox jumps over the lazy dog.';

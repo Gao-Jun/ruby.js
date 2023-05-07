@@ -16,6 +16,7 @@
   - ➕ `String#toS` / `String#to_s`
   - ➕ `String#toStr` / `String#to_str`
 - Delegated to JS string
+  - ➕ `length` (property)
   - ➕ `at`
   - ➕ `charAt` / `char_at`
   - ➕ `charCodeAt` / `char_code_at`
