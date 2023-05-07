@@ -102,6 +102,16 @@ class RubyString extends RubyObject<string> {
     }
     isInclude = this.include;
 
+    lstrip():RubyString {
+        const result = this.js.trimStart();
+        return new RubyString(result);
+    }
+
+    rstrip():RubyString {
+        const result = this.js.trimEnd();
+        return new RubyString(result);
+    }
+
     /**
      * Returns whether self starts with any of the given string_or_regexp.
      * Matches patterns against the beginning of self

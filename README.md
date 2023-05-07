@@ -47,7 +47,7 @@ ruby('foo', s => s.upcase().center(9)) // return ***FOO***
 - [ ] length
 - [ ] lines
 - [ ] ljust
-- [ ] lstrip
+- [x] lstrip
 - [ ] match
 - [ ] match? => isMatch
 - [ ] next
@@ -60,7 +60,7 @@ ruby('foo', s => s.upcase().center(9)) // return ***FOO***
 - [ ] rindex
 - [ ] rjust
 - [ ] rpartition
-- [ ] rstrip
+- [x] rstrip
 - [ ] scan
 - [ ] scrub
 - [ ] size

@@ -10,6 +10,8 @@
   - ➕ `String#endWith` / `String#end_with` / `String#isEndWith`
   - ➕ `String#startWith` / `String#start_with` / `String#isStartWith`
   - ➕ `String#include` / `String#isInclude`
+  - ➕ `String#lstrip`
+  - ➕ `String#rstrip`
   - ➕ `String#strip`
   - ➕ `String#toS` / `String#to_s`
   - ➕ `String#toStr` / `String#to_str`
