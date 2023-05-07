@@ -225,6 +225,15 @@ class RubyString extends RubyObject<string> {
     index_of = this.indexOf;
 
     /**
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/lastIndexOf
+     */
+    lastIndexOf(searchString:string, position?:number):RubyNumber {
+        const result = this.js.lastIndexOf(searchString, position);
+        return new RubyNumber(result);
+    }
+    last_index_of = this.lastIndexOf;
+
+    /**
      * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
      */
     localeCompare(compareString:string, locales?: string, options?: Intl.CollatorOptions):RubyNumber {

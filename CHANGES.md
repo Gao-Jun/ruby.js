@@ -27,6 +27,7 @@
   - ➕ `fromCodePoint` / `from_code_point`
   - ➕ `includes`
   - ➕ `indexOf` / `index_of`
+  - ➕ `lastIndexOf` / `last_index_of`
   - ➕ `localeCompare` / `locale_compare`
   - ➕ `normalize`
   - ➕ `padEnd` / `pad_end`

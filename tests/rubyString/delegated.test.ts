@@ -162,6 +162,21 @@ describe('Delegated function to JS string', () => {
         expect(ruby('brie, pepper jack, cheddar', s => s.index_of('cheddar'))).toBe(19);
     });
 
+    test('String#lastIndexOf', () => {
+        const paragraph = 'The quick brown fox jumps over the lazy dog. If the dog barked, was it really lazy?';
+        expect(ruby(paragraph, s => s.lastIndexOf('dog'))).toBe(52);
+        expect(ruby('canal', s => s.lastIndexOf('a'))).toBe(3);
+        expect(ruby('canal', s => s.lastIndexOf('a', 2))).toBe(1);
+        expect(ruby('canal', s => s.last_index_of('a', 2))).toBe(1);
+        expect(ruby('canal', s => s.lastIndexOf('a', 0))).toBe(-1);
+        expect(ruby('canal', s => s.lastIndexOf('x'))).toBe(-1);
+        expect(ruby('canal', s => s.lastIndexOf('c', -5))).toBe(0);
+        expect(ruby('canal', s => s.lastIndexOf(''))).toBe(5);
+        expect(ruby('canal', s => s.lastIndexOf('', 2))).toBe(2);
+        expect(ruby('Blue Whale, Killer Whale', s => s.lastIndexOf('blue'))).toBe(-1);
+        expect(ruby('Brave, Brave New World', s => s.lastIndexOf('Brave'))).toBe(7);
+    });
+
     test('String#localeCompare', () => {
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
         const a = 'réservé'; // With accents, lowercase
