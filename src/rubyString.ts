@@ -81,8 +81,8 @@ class RubyString extends RubyObject<string> {
     }
 
     downcase():RubyString {
-        this.js = this.js.toLowerCase();
-        return this;
+        const result = this.js.toLowerCase();
+        return new RubyString(result);
     }
 
     /**
@@ -297,6 +297,12 @@ class RubyString extends RubyObject<string> {
         const result = this.js.substring(indexStart, indexEnd);
         return new RubyString(result);
     }
+
+    /**
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLowerCase
+     */
+    toLowerCase = this.downcase;
+    to_lower_case = this.downcase;
 
     /**
      * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toString

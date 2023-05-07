@@ -33,6 +33,7 @@
   - ➕ `substring`
   - ➕ `toLocaleLowerCase` / `to_locale_lower_case`
   - ➕ `toLocaleUpperCase` / `to_locale_upper_case`
+  - ➕ `toLowerCase` / `to_lower_case`
   - ➕ `toString` / `to_string`
   - ➕ `toUpperCase` / `to_upper_case`
 
