@@ -11,6 +11,7 @@
   - ➕ `String#startWith` / `String#start_with` / `String#isStartWith`
   - ➕ `String#include` / `String#isInclude`
   - ➕ `String#toS` / `String#to_s`
+  - ➕ `String#toStr` / `String#to_str`
 - Delegated to JS string
   - ➕ `at`
   - ➕ `charAt` / `char_at`
@@ -32,6 +33,7 @@
   - ➕ `substring`
   - ➕ `toLocaleLowerCase` / `to_locale_lower_case`
   - ➕ `toLocaleUpperCase` / `to_locale_upper_case`
+  - ➕ `toString` / `to_string`
 
 ## 0.0.1 - 2023-04-28
 

@@ -298,6 +298,12 @@ class RubyString extends RubyObject<string> {
         return new RubyString(result);
     }
 
+    /**
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toString
+     */
+    toString = this.toS;
+    to_string = this.toS;
+
     // static delegation methods
 
     /**

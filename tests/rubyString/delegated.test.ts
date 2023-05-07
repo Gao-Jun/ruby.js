@@ -298,4 +298,9 @@ describe('Delegated function to JS string', () => {
         const locales = ['lt', 'LT', 'lt-LT', 'lt-u-co-phonebk', 'lt-x-lietuva'];
         expect(ruby('i\u0307', s => s.toLocaleUpperCase(locales))).toBe('I');
     });
+
+    test('String#toString', () => {
+        expect(ruby('foo', s => s.toString())).toBe('foo');
+        expect(ruby('foo', s => s.to_string())).toBe('foo');
+    });
 });
