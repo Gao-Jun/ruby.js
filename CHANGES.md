@@ -34,6 +34,7 @@
   - ➕ `toLocaleLowerCase` / `to_locale_lower_case`
   - ➕ `toLocaleUpperCase` / `to_locale_upper_case`
   - ➕ `toString` / `to_string`
+  - ➕ `toUpperCase` / `to_upper_case`
 
 ## 0.0.1 - 2023-04-28
 

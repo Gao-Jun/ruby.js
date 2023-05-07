@@ -129,8 +129,8 @@ class RubyString extends RubyObject<string> {
     to_str = this.toS;
 
     upcase():RubyString {
-        this.js = this.js.toUpperCase();
-        return this;
+        const result = this.js.toUpperCase();
+        return new RubyString(result);
     }
 
     // delegate method to string
@@ -303,6 +303,12 @@ class RubyString extends RubyObject<string> {
      */
     toString = this.toS;
     to_string = this.toS;
+
+    /**
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase
+     */
+    toUpperCase = this.upcase;
+    to_upper_case = this.upcase;
 
     // static delegation methods
 
