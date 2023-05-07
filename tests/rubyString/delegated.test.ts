@@ -302,6 +302,8 @@ describe('Delegated function to JS string', () => {
     test('String#toString', () => {
         expect(ruby('foo', s => s.toString())).toBe('foo');
         expect(ruby('foo', s => s.to_string())).toBe('foo');
+        expect(ruby('foo', s => s.valueOf())).toBe('foo');
+        expect(ruby('foo', s => s.value_of())).toBe('foo');
     });
 
     test('String#trim', () => {

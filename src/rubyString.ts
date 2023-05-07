@@ -348,6 +348,12 @@ class RubyString extends RubyObject<string> {
     trimStart = this.lstrip;
     trim_start = this.lstrip;
 
+    /**
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/valueOf
+     */
+    valueOf = this.toS;
+    value_of = this.toS;
+
     // static delegation methods
 
     /**

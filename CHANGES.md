@@ -42,6 +42,7 @@
   - ➕ `trim`
   - ➕ `trimEnd` / `trim_end`
   - ➕ `trimStart` / `trim_start`
+  - ➕ `valueOf` / `value_of`
 
 ## 0.0.1 - 2023-04-28
 
