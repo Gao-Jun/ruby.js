@@ -68,7 +68,7 @@ ruby('foo', s => s.upcase().center(9)) // return ***FOO***
 - [ ] split
 - [ ] squeeze
 - [x] start_with? => start_with / startWith / isStartWith
-- [ ] strip
+- [x] strip
 - [ ] sub
 - [ ] succ
 - [ ] sum
