@@ -76,8 +76,8 @@ ruby('foo', s => s.upcase().center(9)) // return ***FOO***
 - [ ] to_c => toC
 - [ ] to_f => toF
 - [ ] to_i => toI
-- [ ] to_s => toS
-- [ ] to_str => toStr
+- [x] to_s => toS
+- [x] to_str => toStr
 - [ ] to_sym => toSym
 - [ ] tr
 - [ ] tr_s => trS

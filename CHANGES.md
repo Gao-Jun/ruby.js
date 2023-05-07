@@ -10,6 +10,7 @@
   - ➕ `String#endWith` / `String#end_with` / `String#isEndWith`
   - ➕ `String#startWith` / `String#start_with` / `String#isStartWith`
   - ➕ `String#include` / `String#isInclude`
+  - ➕ `String#toS` / `String#to_s`
 - Delegated to JS string
   - ➕ `at`
   - ➕ `charAt` / `char_at`

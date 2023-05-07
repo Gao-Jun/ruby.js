@@ -121,6 +121,13 @@ class RubyString extends RubyObject<string> {
     start_with = this.startWith;
     isStartWith = this.startWith;
 
+    toS():RubyString {
+        return new RubyString(this.js);
+    }
+    to_s = this.toS;
+    toStr = this.toS;
+    to_str = this.toS;
+
     upcase():RubyString {
         this.js = this.js.toUpperCase();
         return this;
