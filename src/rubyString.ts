@@ -321,6 +321,11 @@ class RubyString extends RubyObject<string> {
     toUpperCase = this.upcase;
     to_upper_case = this.upcase;
 
+    /**
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trim
+     */
+    trim = this.strip;
+
     // static delegation methods
 
     /**

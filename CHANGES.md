@@ -37,6 +37,7 @@
   - ➕ `toLowerCase` / `to_lower_case`
   - ➕ `toString` / `to_string`
   - ➕ `toUpperCase` / `to_upper_case`
+  - ➕ `trim`
 
 ## 0.0.1 - 2023-04-28
 

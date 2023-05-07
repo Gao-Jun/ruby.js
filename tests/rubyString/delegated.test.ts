@@ -303,4 +303,10 @@ describe('Delegated function to JS string', () => {
         expect(ruby('foo', s => s.toString())).toBe('foo');
         expect(ruby('foo', s => s.to_string())).toBe('foo');
     });
+
+    test('String#trim', () => {
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trim
+        expect(ruby('   Hello world!   ', s => s.trim())).toBe('Hello world!');
+        expect(ruby('   foo  ', s => s.trim())).toBe('foo');
+    });
 });
