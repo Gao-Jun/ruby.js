@@ -22,6 +22,7 @@
   - ➕ `charCodeAt` / `char_code_at`
   - ➕ `codePointAt` / `code_point_at`
   - ➕ `concat` => `jsConcat` / `js_concat`
+  - ➕ `endsWith` / `ends_with`
   - ➕ `fromCharCode` / `from_char_code`
   - ➕ `fromCodePoint` / `from_code_point`
   - ➕ `includes`

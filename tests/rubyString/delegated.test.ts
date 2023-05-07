@@ -78,6 +78,19 @@ describe('Delegated function to JS string', () => {
         expect(ruby('', s => s.jsConcat(4, 5))).toBe('45');
     });
 
+    test('String#endsWith', () => {
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/endsWith
+        const str1 = 'Cats are the best!';
+        expect(ruby(str1, s => s.endsWith('best!'))).toBe(true);
+        expect(ruby(str1, s => s.endsWith('best', 17))).toBe(true);
+        expect(ruby(str1, s => s.ends_with('best', 17))).toBe(true);
+        expect(ruby('Is this a question?', s => s.endsWith('question'))).toBe(false);
+        const str = 'To be, or not to be, that is the question.';
+        expect(ruby(str, s => s.endsWith('question.'))).toBe(true);
+        expect(ruby(str, s => s.endsWith('to be'))).toBe(false);
+        expect(ruby(str, s => s.endsWith('to be', 19))).toBe(true);
+    });
+
     // static methods
     test('String.fromCharCode', () => {
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode

@@ -186,6 +186,15 @@ class RubyString extends RubyObject<string> {
     code_point_at = this.codePointAt;
 
     /**
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/endsWith
+     */
+    endsWith(searchString:string, position?:number):RubyBoolean {
+        const result = this.js.endsWith(searchString, position);
+        return new RubyBoolean(result);
+    }
+    ends_with = this.endsWith;
+
+    /**
      * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/concat
      */
     jsConcat(...strings: Array<any>):RubyString {
