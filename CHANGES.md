@@ -40,6 +40,8 @@
   - ➕ `toString` / `to_string`
   - ➕ `toUpperCase` / `to_upper_case`
   - ➕ `trim`
+  - ➕ `trimEnd` / `trim_end`
+  - ➕ `trimStart` / `trim_start`
 
 ## 0.0.1 - 2023-04-28
 

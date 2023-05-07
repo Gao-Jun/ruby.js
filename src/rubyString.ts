@@ -336,6 +336,18 @@ class RubyString extends RubyObject<string> {
      */
     trim = this.strip;
 
+    /**
+     * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trimEnd
+     */
+    trimEnd = this.rstrip;
+    trim_end = this.rstrip;
+
+    /**
+     * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trimStart
+     */
+    trimStart = this.lstrip;
+    trim_start = this.lstrip;
+
     // static delegation methods
 
     /**

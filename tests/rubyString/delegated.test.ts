@@ -309,4 +309,18 @@ describe('Delegated function to JS string', () => {
         expect(ruby('   Hello world!   ', s => s.trim())).toBe('Hello world!');
         expect(ruby('   foo  ', s => s.trim())).toBe('foo');
     });
+
+    test('String#trimEnd', () => {
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trimEnd
+        expect(ruby('   Hello world!   ', s => s.trimEnd())).toBe('   Hello world!');
+        expect(ruby('   foo  ', s => s.trimEnd())).toBe('   foo');
+        expect(ruby('   foo  ', s => s.trim_end())).toBe('   foo');
+    });
+
+    test('String#trimStart', () => {
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trimStart
+        expect(ruby('   Hello world!   ', s => s.trimStart())).toBe('Hello world!   ');
+        expect(ruby('   foo  ', s => s.trimStart())).toBe('foo  ');
+        expect(ruby('   foo  ', s => s.trim_start())).toBe('foo  ');
+    });
 });
