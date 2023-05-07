@@ -62,6 +62,22 @@ describe('Delegated function to JS string', () => {
         expect(ruby(icons, s => s.code_point_at(1))).toBe(9733);
     });
 
+    test('String#concat renamed to jsConcat', () => {
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/concat
+        expect(ruby('Hello', s => s.jsConcat(' ', 'World'))).toBe('Hello World');
+        expect(ruby('Hello', s => s.js_concat(' ', 'World'))).toBe('Hello World');
+        expect(ruby('World', s => s.jsConcat(', ', 'Hello'))).toBe('World, Hello');
+        expect(ruby('Hello, ', s => s.jsConcat('Kevin', '. Have a nice day.')))
+            .toBe('Hello, Kevin. Have a nice day.');
+        const greetList = ["Hello", " ", "Venkat", "!"];
+        expect(ruby('', s => s.jsConcat(...greetList))).toBe('Hello Venkat!');
+        expect(ruby('', s => s.jsConcat({}))).toBe('[object Object]');
+        expect(ruby('', s => s.jsConcat([]))).toBe('');
+        expect(ruby('', s => s.jsConcat(null))).toBe('null');
+        expect(ruby('', s => s.jsConcat(true))).toBe('true');
+        expect(ruby('', s => s.jsConcat(4, 5))).toBe('45');
+    });
+
     // static methods
     test('String.fromCharCode', () => {
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode

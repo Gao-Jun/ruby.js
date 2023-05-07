@@ -186,6 +186,15 @@ class RubyString extends RubyObject<string> {
     code_point_at = this.codePointAt;
 
     /**
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/concat
+     */
+    jsConcat(...strings: Array<any>):RubyString {
+        const result = this.js.concat(...strings);
+        return new RubyString(result);
+    }
+    js_concat = this.jsConcat;
+
+    /**
      * This method lets you determine whether or not a string includes another string.
      * @param searchString A string to be searched for within str. Cannot be a regex. All values that are not regexes
      *  are coerced to strings, so omitting it or passing undefined causes includes() to search for the string
