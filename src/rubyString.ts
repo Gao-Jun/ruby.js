@@ -80,6 +80,28 @@ class RubyString extends RubyObject<string> {
         return this;
     }
 
+    /**
+     * Returns a new string copied from self, with trailing characters possibly removed:
+     * When line_sep is "\n", removes the last one or two characters if they are "\r", "\n", or "\r\n" (but not "\n\r"):
+     */
+    chomp(line_sep :string = '\n'):RubyString {
+        let result;
+        if (line_sep === '\n') {
+            // default ('\n') chomp \r\n and \n and \r
+            result = this.js.replace(/(\r?\n|\r)$/, '');
+        } else if (line_sep === '') {
+            // When line_sep is '', removes multiple trailing occurrences of "\n" or "\r\n" (but not "\r" or "\n\r")
+            result = this.js.replace(/(\r?\n)+$/, '');
+        } else {
+            if (this.js.endsWith(line_sep)) {
+                result = this.js.slice(0, -line_sep.length);
+            } else {
+                result = this.js.repeat(1);
+            }
+        }
+        return new RubyString(result);
+    }
+
     downcase():RubyString {
         const result = this.js.toLowerCase();
         return new RubyString(result);

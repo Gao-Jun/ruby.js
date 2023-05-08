@@ -6,6 +6,7 @@
   - ➕ `String#capitalize`
   - ➕ `String#casecmp`
   - ➕ `String#chars`
+  - ➕ `String#chomp`
   - ➕ `String#concat`
   - ➕ `String#endWith` / `String#end_with` / `String#isEndWith`
   - ➕ `String#startWith` / `String#start_with` / `String#isStartWith`
