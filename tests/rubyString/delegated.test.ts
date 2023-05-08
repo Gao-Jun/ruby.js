@@ -330,6 +330,18 @@ describe('Delegated function to JS string', () => {
         expect(ruby('Hello World. How are you doing?', s => s.js_split(' ', 3))).toStrictEqual(["Hello", "World.", "How"]);
     });
 
+    test('String#startsWith', () => {
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith
+        const str1 = 'Saturday night plans';
+        expect(ruby(str1, s => s.startsWith('Sat'))).toBe(true);
+        expect(ruby(str1, s => s.starts_with('Sat'))).toBe(true);
+        expect(ruby(str1, s => s.startsWith('Sat', 3))).toBe(false);
+        const str = 'To be, or not to be, that is the question.';
+        expect(ruby(str, s => s.startsWith('To be'))).toBe(true);
+        expect(ruby(str, s => s.startsWith('not to be'))).toBe(false);
+        expect(ruby(str, s => s.startsWith('not to be', 10))).toBe(true);
+    });
+
     test('String#substring', () => {
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring
         expect(ruby('Mozilla', s => s.substring(1, 3))).toBe('oz');

@@ -38,6 +38,7 @@
   - ➕ `search`
   - ➕ `slice` => `jsSlice` / `js_slice`
   - ➕ `split` => `jsSplit` / `js_split`
+  - ➕ `startsWith` / `starts_with`
   - ➕ `substring`
   - ➕ `toLocaleLowerCase` / `to_locale_lower_case`
   - ➕ `toLocaleUpperCase` / `to_locale_upper_case`

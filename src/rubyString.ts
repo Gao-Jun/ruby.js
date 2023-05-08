@@ -333,6 +333,15 @@ class RubyString extends RubyObject<string> {
     js_split = this.jsSplit;
 
     /**
+     * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith
+     */
+    startsWith(searchString:string, position?:number):RubyBoolean {
+        const result = this.js.startsWith(searchString, position);
+        return new RubyBoolean(result);
+    }
+    starts_with = this.startsWith;
+
+    /**
      * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleLowerCase
      */
     toLocaleLowerCase(locales?: string | string[]): RubyString {
