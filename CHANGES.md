@@ -37,6 +37,7 @@
   - ➕ `replaceAll` / `replace_all`
   - ➕ `search`
   - ➕ `slice` => `jsSlice` / `js_slice`
+  - ➕ `split` => `jsSplit` / `js_split`
   - ➕ `substring`
   - ➕ `toLocaleLowerCase` / `to_locale_lower_case`
   - ➕ `toLocaleUpperCase` / `to_locale_upper_case`

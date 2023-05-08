@@ -1,5 +1,6 @@
 import ruby from "../../src/ruby.js"
 import RubyString from "../../src/rubyString.js";
+import RubyObject from "../../src/rubyObject.js";
 
 describe('Delegated function to JS string', () => {
     test('String#length', () => {
@@ -308,6 +309,25 @@ describe('Delegated function to JS string', () => {
         expect(ruby(str1, s => s.jsSlice(4, -1))).toBe('morning is upon us');
         expect(ruby(str1, s => s.jsSlice(-11, 16))).toBe('is u');
         expect(ruby(str1, s => s.jsSlice(-5, -1))).toBe('n us');
+    });
+
+    test('String#split renamed to jsSplit', () => {
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split
+        const str = 'The quick brown fox jumps over the lazy dog.';
+        ruby(str, s => {
+            const words = s.jsSplit(' ');
+            expect(words.at(3).toJS()).toBe('fox');
+            const chars = s.jsSplit('');
+            expect(chars.at(8).toJS()).toBe('k');
+            expect(s.jsSplit().toJS()).toEqual([str]);
+            return new RubyObject<Number>(0);
+        });
+        expect(ruby('😄😄', s => s.jsSplit(/(?:)/))).toStrictEqual(["\ud83d", "\ude04", "\ud83d", "\ude04"]);
+        expect(ruby('😄😄', s => s.jsSplit(/(?:)/u))).toStrictEqual(["😄", "😄"]);
+        expect(ruby('', s => s.jsSplit('a'))).toStrictEqual(['']);
+        expect(ruby('', s => s.jsSplit(''))).toStrictEqual([]);
+        expect(ruby('Hello World. How are you doing?', s => s.jsSplit(' ', 3))).toStrictEqual(["Hello", "World.", "How"]);
+        expect(ruby('Hello World. How are you doing?', s => s.js_split(' ', 3))).toStrictEqual(["Hello", "World.", "How"]);
     });
 
     test('String#substring', () => {

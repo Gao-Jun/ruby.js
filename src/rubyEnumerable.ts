@@ -1,11 +1,17 @@
 import RubyObject from './rubyObject.js';
 import RubyBoolean from './rubyBoolean.js';
 import RubyNil from "./rubyNil.js";
+import jsToRuby from "./jsToRuby.js";
+import RubyString from "./rubyString.js";
+import RubyNumber from "./rubyNumber.js";
 
 class RubyEnumerable<T> extends RubyObject<Iterable<T>> {
-    each(func: (elm: T) => void | symbol): RubyEnumerable<T>|RubyNil{
+    each(func: (elm: RubyString) => void | symbol): RubyEnumerable<string> | RubyNil;
+    each(func: (elm: RubyNumber) => void | symbol): RubyEnumerable<number> | RubyNil;
+    each(func: (elm: RubyBoolean) => void | symbol): RubyEnumerable<boolean> | RubyNil;
+    each(func: any): RubyEnumerable<any>|RubyNil{
         for (const elm of this.js) {
-            const result = func(elm);
+            const result = func(jsToRuby(elm));
             if (result === Symbol('break')) {
                 return new RubyNil();
             }

@@ -320,6 +320,19 @@ class RubyString extends RubyObject<string> {
     js_slice = this.jsSlice;
 
     /**
+     * Since Ruby String#split has different behavior than JavaScript String#split,
+     * JavaScript String#split is delegated by String#jsSplit.
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split
+     */
+    jsSplit(separator?: string | RegExp, limit?: number): RubyArray<string> {
+        // Actually, String#split can be called without arguments.
+        // @ts-ignore
+        const result = this.js.split(separator, limit);
+        return new RubyArray(result);
+    }
+    js_split = this.jsSplit;
+
+    /**
      * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleLowerCase
      */
     toLocaleLowerCase(locales?: string | string[]): RubyString {
