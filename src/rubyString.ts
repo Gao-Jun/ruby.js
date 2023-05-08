@@ -52,9 +52,9 @@ class RubyString extends RubyObject<string> {
         return this;
     }
 
-    chars(func: (elm: string) => void):RubyString;
+    chars(func: (elm: RubyString) => void):RubyString;
     chars(): RubyArray<string>
-    chars(func: ((elm: string) => void)|null = null):RubyArray<string>|RubyString {
+    chars(func?: ((elm: RubyString) => symbol | void)):RubyArray<string>|RubyString {
         const rubyArray = new RubyArray<string>([...this.js]);
         if (!func) {
             return rubyArray;
