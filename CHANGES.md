@@ -1,6 +1,8 @@
 # Change Log
 
-## 0.0.2 - 2023-05-0X
+## 0.0.2 (2023-05-10)
+
+Support almost all JS String methods.
 
 - RubyString
   - ➕ `String#capitalize`
@@ -53,7 +55,7 @@
   - ➕ `trimStart` / `trim_start`
   - ➕ `valueOf` / `value_of`
 
-## 0.0.1 - 2023-04-28
+## 0.0.1 (2023-04-28)
 
 - Initial release.
 - RubyString

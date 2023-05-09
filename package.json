@@ -1,6 +1,6 @@
 {
   "name": "ruby-ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Bring Ruby methods to JavaScript/TypeScript",
   "repository": {
     "type": "git",
@@ -12,7 +12,8 @@
   "homepage": "https://github.com/Gao-Jun/ruby-ts",
   "main": "dist/ruby.js",
   "files": [
-    "dist"
+    "dist",
+    "CHANGES.md"
   ],
   "type": "module",
   "scripts": {
