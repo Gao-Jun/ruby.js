@@ -3,6 +3,8 @@ import RubyNumber from "./rubyNumber.js";
 import RubyArray from "./rubyArray.js";
 import RubyUndefined from "./rubyUndefined.js";
 import RubyBoolean from "./rubyBoolean.js";
+import RubyNil from "./rubyNil.js";
+import RubyRegExpMatchArray from "./rubyRegExpMatchArray.js";
 
 class RubyString extends RubyObject<string> {
     /**
@@ -263,6 +265,15 @@ class RubyString extends RubyObject<string> {
         return new RubyNumber(result);
     }
     locale_compare = this.localeCompare;
+
+    /**
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match
+     */
+    jsMatch(matcher: {[Symbol.match](string: string): RegExpMatchArray | null; }): RubyRegExpMatchArray | RubyNil {
+        const result = this.js.match(matcher);
+        return result === null ? new RubyNil() : new RubyRegExpMatchArray(result);
+    }
+    js_match = this.jsMatch;
 
     /**
      * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize

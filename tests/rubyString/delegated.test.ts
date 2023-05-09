@@ -194,6 +194,26 @@ describe('Delegated function to JS string', () => {
         expect(ruby('ä', s => s.localeCompare('a', 'sv', { sensitivity: 'base' }))).toBeGreaterThan(0);
     });
 
+    test('String#match', () => {
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match
+        const paragraph = 'The quick brown fox jumps over the lazy dog. It barked.';
+        expect(ruby(paragraph, s => s.jsMatch(/[A-Z]/g))).toStrictEqual(['T', 'I']);
+        expect(ruby(paragraph, s => s.js_match(/[A-Z]/g))).toStrictEqual(['T', 'I']);
+        const str = 'For more information, see Chapter 3.4.5.1';
+        expect(ruby(str, s => {
+            const m = s.jsMatch(/see (chapter \d+(\.\d)*)/i);
+            return new RubyString(m.toJS()?.toString() ?? '');
+        })).toBe('see Chapter 3.4.5.1,Chapter 3.4.5.1,.1');
+        const str2 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+        expect(ruby(str2, s => s.jsMatch(/[A-E]/gi))).toStrictEqual(['A', 'B', 'C', 'D', 'E', 'a', 'b', 'c', 'd', 'e']);
+        // @ts-ignore
+        expect(ruby(paragraph, s => s.jsMatch(/(?<animal>fox|cat) jumps over/).groups)).toEqual({animal: "fox"});
+        const str3 = 'Hmm, this is interesting.';
+        expect(ruby(str3, s => s.jsMatch({
+            [Symbol.match](str) { return ["Yes, it's interesting."]}
+        }))).toEqual(["Yes, it's interesting."]);
+    });
+
     test('String#normalize', () => {
         const name1 = '\u0041\u006d\u00e9\u006c\u0069\u0065';
         const name2 = '\u0041\u006d\u0065\u0301\u006c\u0069\u0065';

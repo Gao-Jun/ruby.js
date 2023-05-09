@@ -30,6 +30,7 @@
   - ➕ `indexOf` / `index_of`
   - ➕ `lastIndexOf` / `last_index_of`
   - ➕ `localeCompare` / `locale_compare`
+  - ➕ `match` => `jsMatch` / `js_match`
   - ➕ `normalize`
   - ➕ `padEnd` / `pad_end`
   - ➕ `padStart` / `pad_start`
