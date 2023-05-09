@@ -1,6 +1,7 @@
 import ruby from "../../src/ruby.js"
 import RubyString from "../../src/rubyString.js";
 import RubyObject from "../../src/rubyObject.js";
+import RubyNil from "../../src/rubyNil.js";
 
 describe('Delegated function to JS string', () => {
     test('String#length', () => {
@@ -212,6 +213,23 @@ describe('Delegated function to JS string', () => {
         expect(ruby(str3, s => s.jsMatch({
             [Symbol.match](str) { return ["Yes, it's interesting."]}
         }))).toEqual(["Yes, it's interesting."]);
+    });
+
+    test('String#matchAll', () => {
+        const regexp = /t(e)(st(\d?))/g;
+        const str = 'test1test2';
+        /*
+         * Strange things happened here.
+         * According to the MDN documentation, the return value of matchAll is an iterator of String,
+         * Yet, in my test environment, it is an iterator of RegExpMatchArray. I'm really confused.
+         * This make the following test failed.
+         */
+        // expect(ruby(str, s => [...s.matchAll(regexp)][0])).toEqual(['test1', 'e', 'st1', '1']);
+        ruby(str, s => {
+            const array = [...s.matchAll(regexp)];
+            expect([...array[0].toJS()]).toEqual(['test1', 'e', 'st1', '1']);
+            return new RubyNil();
+        });
     });
 
     test('String#normalize', () => {

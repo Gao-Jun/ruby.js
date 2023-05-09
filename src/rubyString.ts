@@ -5,6 +5,7 @@ import RubyUndefined from "./rubyUndefined.js";
 import RubyBoolean from "./rubyBoolean.js";
 import RubyNil from "./rubyNil.js";
 import RubyRegExpMatchArray from "./rubyRegExpMatchArray.js";
+import RubyEnumerable from "./rubyEnumerable.js";
 
 class RubyString extends RubyObject<string> {
     /**
@@ -274,6 +275,15 @@ class RubyString extends RubyObject<string> {
         return result === null ? new RubyNil() : new RubyRegExpMatchArray(result);
     }
     js_match = this.jsMatch;
+
+    /**
+     * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/matchAll
+     */
+    matchAll(regexp: RegExp): RubyEnumerable<RegExpMatchArray> {
+        const result = this.js.matchAll(regexp);
+        return new RubyEnumerable(result);
+    }
+    match_all = this.matchAll;
 
     /**
      * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize

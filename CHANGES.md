@@ -31,6 +31,7 @@
   - ➕ `lastIndexOf` / `last_index_of`
   - ➕ `localeCompare` / `locale_compare`
   - ➕ `match` => `jsMatch` / `js_match`
+  - ➕ `matchAll` / `match_all`
   - ➕ `normalize`
   - ➕ `padEnd` / `pad_end`
   - ➕ `padStart` / `pad_start`

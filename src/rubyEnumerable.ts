@@ -6,6 +6,19 @@ import RubyString from "./rubyString.js";
 import RubyNumber from "./rubyNumber.js";
 
 class RubyEnumerable<T> extends RubyObject<Iterable<T>> {
+    [Symbol.iterator]() {
+        const jsIterator = this.js[Symbol.iterator]();
+        return {
+            next: () => {
+                const result = jsIterator.next();
+                return {
+                    value: jsToRuby(result.value),
+                    done: result.done,
+                };
+            }
+        }
+    }
+
     each(func: (elm: RubyString) => void | symbol): RubyEnumerable<string> | RubyNil;
     each(func: (elm: RubyNumber) => void | symbol): RubyEnumerable<number> | RubyNil;
     each(func: (elm: RubyBoolean) => void | symbol): RubyEnumerable<boolean> | RubyNil;
