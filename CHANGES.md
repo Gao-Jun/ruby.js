@@ -3,7 +3,8 @@
 ## 0.0.3 (2023-05-??)
 
 - RubyString
-- ➕ `String#chop`
+  - ➕ `String#chop`
+  - ➕ `String#chr`
 
 ## 0.0.2 (2023-05-10)
 

@@ -117,6 +117,13 @@ class RubyString extends RubyObject<string> {
         return new RubyString(this.js.slice(0, -1));
     }
 
+    /**
+     * Returns a string containing the first character of self
+     */
+    chr() {
+        return this.js.length === 0 ? new RubyString('') : new RubyString(this.js[0]);
+    }
+
     downcase():RubyString {
         const result = this.js.toLowerCase();
         return new RubyString(result);

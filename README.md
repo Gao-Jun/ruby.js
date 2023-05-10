@@ -19,7 +19,7 @@ ruby('foo', s => s.upcase().center(9)) // return ***FOO***
 - [x] chars
 - [x] chomp
 - [x] chop
-- [ ] chr
+- [x] chr
 - [ ] clear
 - [ ] codepoints
 - [x] concat
