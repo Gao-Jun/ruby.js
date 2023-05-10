@@ -105,6 +105,18 @@ class RubyString extends RubyObject<string> {
         return new RubyString(result);
     }
 
+    /**
+     * Returns a new string copied from self, with trailing characters possibly removed.
+     * Removes "\r\n" if those are the last two characters.
+     */
+    chop():RubyString {
+        if (this.js.length === 0) return new RubyString(this.js);
+        if (this.js.endsWith('\r\n')) {
+            return new RubyString(this.js.slice(0, -2));
+        }
+        return new RubyString(this.js.slice(0, -1));
+    }
+
     downcase():RubyString {
         const result = this.js.toLowerCase();
         return new RubyString(result);

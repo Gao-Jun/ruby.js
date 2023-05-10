@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.0.3 (2023-05-??)
+
+- RubyString
+- ➕ `String#chop`
+
 ## 0.0.2 (2023-05-10)
 
 Support almost all JS String methods.
