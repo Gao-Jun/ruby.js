@@ -118,6 +118,14 @@ class RubyString extends RubyObject<string> {
     }
 
     /**
+     * Removes the contents of self
+     */
+    clear():RubyString {
+        this.js = '';
+        return this;
+    }
+
+    /**
      * Returns an array of the codepoints in self; each codepoint is the integer value for a character
      */
     codepoints():RubyArray<number> {
