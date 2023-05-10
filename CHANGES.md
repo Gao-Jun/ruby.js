@@ -5,6 +5,7 @@
 - RubyString
   - ➕ `String#chop`
   - ➕ `String#chr`
+  - ➕ `String#codepoints`
 
 ## 0.0.2 (2023-05-10)
 

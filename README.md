@@ -21,7 +21,7 @@ ruby('foo', s => s.upcase().center(9)) // return ***FOO***
 - [x] chop
 - [x] chr
 - [ ] clear
-- [ ] codepoints
+- [x] codepoints
 - [x] concat
 - [ ] count
 - [ ] crypt

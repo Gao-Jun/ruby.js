@@ -118,6 +118,19 @@ class RubyString extends RubyObject<string> {
     }
 
     /**
+     * Returns an array of the codepoints in self; each codepoint is the integer value for a character
+     */
+    codepoints():RubyArray<number> {
+        let result:Array<number> = [];
+        for (let i = 0; i < this.js.length; i++) {
+            // JS String#codePointAt return undefined only i is out of range.
+            const codepoint = this.js.codePointAt(i);
+            if (codepoint !== undefined) result.push(codepoint);
+        }
+        return new RubyArray<number>(result);
+    }
+
+    /**
      * Returns a string containing the first character of self
      */
     chr() {
