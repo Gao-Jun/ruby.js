@@ -154,6 +154,15 @@ class RubyString extends RubyObject<string> {
     }
     delete_prefix = this.deletePrefix;
 
+    /**
+     * Returns a copy of self with trailing substring suffix removed
+     */
+    deleteSuffix(suffix:string): RubyString {
+        if (suffix.length === 0 || !this.js.endsWith(suffix)) return new RubyString(this.js);
+        return new RubyString(this.js.slice(0, -suffix.length));
+    }
+    delete_suffix = this.deleteSuffix;
+
     downcase():RubyString {
         const result = this.js.toLowerCase();
         return new RubyString(result);

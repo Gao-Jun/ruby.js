@@ -27,7 +27,7 @@ ruby('foo', s => s.upcase().center(9)) // return ***FOO***
 - [ ] crypt
 - [ ] delete
 - [x] delete_prefix => deletePrefix
-- [ ] delete_suffix => deleteSuffix
+- [x] delete_suffix => deleteSuffix
 - [x] downcase
 - [ ] dump
 - [ ] each_char => eachChar
