@@ -7,6 +7,7 @@
   - ➕ `String#chr`
   - ➕ `String#clear`
   - ➕ `String#codepoints`
+  - ➕ `String#deletePrefix` / `String#delete_prefix`
 
 ## 0.0.2 (2023-05-10)
 

@@ -145,6 +145,15 @@ class RubyString extends RubyObject<string> {
         return this.js.length === 0 ? new RubyString('') : new RubyString(this.js[0]);
     }
 
+    /**
+     * Returns a copy of self with leading substring prefix removed
+     */
+    deletePrefix(prefix:string): RubyString {
+        if (!this.js.startsWith(prefix)) return new RubyString(this.js);
+        return new RubyString(this.js.slice(prefix.length));
+    }
+    delete_prefix = this.deletePrefix;
+
     downcase():RubyString {
         const result = this.js.toLowerCase();
         return new RubyString(result);
