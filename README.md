@@ -23,7 +23,7 @@ ruby('foo', s => s.upcase().center(9)) // return ***FOO***
 - [x] clear
 - [x] codepoints
 - [x] concat
-- [ ] count
+- [x] count
 - [ ] crypt
 - [ ] delete
 - [x] delete_prefix => deletePrefix

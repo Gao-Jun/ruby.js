@@ -9,6 +9,7 @@
   - ➕ `String#codepoints`
   - ➕ `String#deletePrefix` / `String#delete_prefix`
   - ➕ `String#deleteSuffix` / `String#delete_suffix`
+  - ➕ `String#count`
 
 ## 0.0.2 (2023-05-10)
 

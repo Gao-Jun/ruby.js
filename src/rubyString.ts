@@ -6,6 +6,7 @@ import RubyBoolean from "./rubyBoolean.js";
 import RubyNil from "./rubyNil.js";
 import RubyRegExpMatchArray from "./rubyRegExpMatchArray.js";
 import RubyEnumerable from "./rubyEnumerable.js";
+import CharacterSelectors from "./util/characterSelectors.js";
 
 class RubyString extends RubyObject<string> {
     /**
@@ -143,6 +144,19 @@ class RubyString extends RubyObject<string> {
         })
         this.js += strings.join('');
         return this;
+    }
+
+    /**
+     * Returns the total number of characters in self that are specified by the given selectors
+     * @see characterSelectors
+     */
+    count(...selectors: Array<string>):RubyNumber {
+        if (selectors === undefined || selectors.length === 0) {
+            throw new Error('wrong number of arguments (given 0, expected 1+)');
+        }
+        const filters = selectors.map(selector => new CharacterSelectors(selector));
+        const result = [...this.js].filter(char => filters.every(filter => filter.match(char))).length;
+        return new RubyNumber(result);
     }
 
     /**
