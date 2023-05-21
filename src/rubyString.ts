@@ -67,23 +67,6 @@ class RubyString extends RubyObject<string> {
     }
 
     /**
-     * Concatenates each object in objects to self and returns self:
-     * For each given object object that is an Integer, the value is considered a codepoint and converted to a
-     * character before concatenation:
-     * @param strings
-     */
-    concat(...strings: Array<string|number>):RubyString {
-        strings = strings.map(element => {
-            if (typeof(element) === 'number') {
-                element = String.fromCharCode(element);
-            }
-            return element;
-        })
-        this.js += strings.join('');
-        return this;
-    }
-
-    /**
      * Returns a new string copied from self, with trailing characters possibly removed:
      * When line_sep is "\n", removes the last one or two characters if they are "\r", "\n", or "\r\n" (but not "\n\r"):
      */
@@ -118,6 +101,13 @@ class RubyString extends RubyObject<string> {
     }
 
     /**
+     * Returns a string containing the first character of self
+     */
+    chr() {
+        return this.js.length === 0 ? new RubyString('') : new RubyString(this.js[0]);
+    }
+
+    /**
      * Removes the contents of self
      */
     clear():RubyString {
@@ -139,10 +129,20 @@ class RubyString extends RubyObject<string> {
     }
 
     /**
-     * Returns a string containing the first character of self
+     * Concatenates each object in objects to self and returns self:
+     * For each given object object that is an Integer, the value is considered a codepoint and converted to a
+     * character before concatenation:
+     * @param strings
      */
-    chr() {
-        return this.js.length === 0 ? new RubyString('') : new RubyString(this.js[0]);
+    concat(...strings: Array<string|number>):RubyString {
+        strings = strings.map(element => {
+            if (typeof(element) === 'number') {
+                element = String.fromCharCode(element);
+            }
+            return element;
+        })
+        this.js += strings.join('');
+        return this;
     }
 
     /**
