@@ -10,6 +10,7 @@
   - ➕ `String#deletePrefix` / `String#delete_prefix`
   - ➕ `String#deleteSuffix` / `String#delete_suffix`
   - ➕ `String#count`
+  - ➕ `String#delete`
 
 ## 0.0.2 (2023-05-10)
 

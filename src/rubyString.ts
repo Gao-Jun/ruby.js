@@ -160,6 +160,18 @@ class RubyString extends RubyObject<string> {
     }
 
     /**
+     * Returns a copy of self with characters specified by selectors removed
+     */
+    delete(...selectors: Array<string>):RubyString {
+        if (selectors === undefined || selectors.length === 0) {
+            throw new Error('wrong number of arguments (given 0, expected 1+)');
+        }
+        const filters = selectors.map(selector => new CharacterSelectors(selector));
+        const result = [...this.js].filter(char => !filters.every(filter => filter.match(char))).join('');
+        return new RubyString(result);
+    }
+
+    /**
      * Returns a copy of self with leading substring prefix removed
      */
     deletePrefix(prefix:string): RubyString {
