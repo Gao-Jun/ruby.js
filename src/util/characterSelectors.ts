@@ -1,5 +1,5 @@
 class CharacterSelectors {
-    private readonly notFlag: boolean = false;
+    readonly negation: boolean = false;
     private parts: Array<number|[number, number]> = [];
     constructor(selector: string) {
         if (selector.startsWith('^')) {
@@ -7,7 +7,7 @@ class CharacterSelectors {
                 this.parts.push(94); // code point of '^' is 45
                 return
             }
-            this.notFlag = true;
+            this.negation = true;
             selector = selector.slice(1);
         }
 
@@ -64,7 +64,19 @@ class CharacterSelectors {
                 return codePoint === part;
             }
         });
-        return this.notFlag ? !match : match;
+        return this.negation ? !match : match;
+    }
+
+    *[Symbol.iterator]() {
+        for(const part of this.parts) {
+            if (Array.isArray(part)) {
+                for (let i = part[0]; i <= part[1]; i++) {
+                    yield String.fromCodePoint(i);
+                }
+            } else {
+                yield String.fromCodePoint(part);
+            }
+        }
     }
 }
 

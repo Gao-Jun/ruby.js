@@ -245,6 +245,41 @@ class RubyString extends RubyObject<string> {
         return new RubyString(result);
     }
 
+    /**
+     * Returns a copy of self with each character specified by string selector translated to the corresponding
+     * character in string replacements. The correspondence is positional:
+     *
+     * Each occurrence of the first character specified by selector is translated to the first character
+     * in replacements.
+     *
+     * Each occurrence of the second character specified by selector is translated to the second character
+     * in replacements.
+     *
+     * And so on.
+     */
+    tr(selector:string, replacements:string):RubyString {
+        const selectorCs = new CharacterSelectors(selector);
+        const replacementCs = new CharacterSelectors(replacements);
+        const replacementChars = [...new CharacterSelectors(replacements)];
+        if (selectorCs.negation) {
+            const lastCharOfReplacement = replacementChars[replacementChars.length - 1];
+            const result = [...this.js].map(c => selectorCs.match(c) ? lastCharOfReplacement : c).join('');
+            return new RubyString(result);
+        }
+
+        const selectorChars = [...new CharacterSelectors(selector)]
+        const zipArray: Array<[string, string]> = selectorChars.map((char, index) => {
+            if (index < replacementChars.length) {
+                return [char, replacementChars[index]];
+            } else {
+                return [char, replacementChars[replacementChars.length - 1]];
+            }
+        });
+        const trMap:Map<string, string> = new Map(zipArray);
+        const result = [...this.js].map(c => trMap.get(c) || c).join('');
+        return new RubyString(result);
+    }
+
     toS():RubyString {
         return new RubyString(this.js);
     }
