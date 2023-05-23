@@ -24,7 +24,6 @@ ruby('foo', s => s.upcase().center(9)) // return ***FOO***
 - [x] codepoints
 - [x] concat
 - [x] count
-- [ ] crypt
 - [x] delete
 - [x] delete_prefix => deletePrefix
 - [x] delete_suffix => deleteSuffix
@@ -94,6 +93,7 @@ ruby('foo', s => s.upcase().center(9)) // return ***FOO***
 - bytesize
 - byteslice
 - bytesplice
+- crypt
 - each_byte
 - force_encoding
 - freeze
