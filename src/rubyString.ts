@@ -245,6 +245,18 @@ class RubyString extends RubyObject<string> {
         return new RubyString(result);
     }
 
+    squeeze(...selectors : Array<string>):RubyString {
+        if (selectors === undefined) {
+            selectors = [];
+        }
+        const filters = selectors.map(selector => new CharacterSelectors(selector));
+        const result = [...this.js].filter((char, index, array) => {
+            if (index === 0) return true;
+            return char !== array[index - 1] || !filters.every(filter => filter.match(char));
+        }).join('');
+        return new RubyString(result);
+    }
+
     /**
      * Returns a copy of self with each character specified by string selector translated to the corresponding
      * character in string replacements. The correspondence is positional:

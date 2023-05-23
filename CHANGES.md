@@ -11,6 +11,7 @@
   - ➕ `String#deleteSuffix` / `String#delete_suffix`
   - ➕ `String#count`
   - ➕ `String#delete`
+  - ➕ `String#squeeze`
   - ➕ `String#tr`
 
 ## 0.0.2 (2023-05-10)

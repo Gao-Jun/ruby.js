@@ -11,7 +11,12 @@ class CharacterSelectors {
             selector = selector.slice(1);
         }
 
-        let escape = false, range = false;
+        // if previous char is \\
+        let escape = false;
+        // if previous char is ^
+        let range = false;
+        // if a range is just end
+        let justEndRange = false;
         [...selector].forEach((char, idx) => {
             const codePoint = char.codePointAt(0);
             if (codePoint === undefined) { // should not happened, char is always a string of length 1. Add for TypeScript
@@ -20,6 +25,7 @@ class CharacterSelectors {
             if (escape) {
                 this.parts.push(codePoint);
                 escape = false;
+                justEndRange = false;
                 return;
             }
             if (range) {
@@ -32,6 +38,7 @@ class CharacterSelectors {
                 }
                 this.parts.push([prev, codePoint]);
                 range = false;
+                justEndRange = true;
                 return;
             }
             switch(char) {
@@ -40,7 +47,8 @@ class CharacterSelectors {
                     break;
                 case '-':
                     // if '-' is at the beginning or the end of the selector, that means '-'
-                    if (idx === 0 || idx === selector.length - 1) {
+                    // justEndRange === true is used for case of the second '-' of 'b-d-k-o'
+                    if (idx === 0 || idx === selector.length - 1 || justEndRange) {
                         this.parts.push(45); // code point of '-' is 45
                     } else {
                         range = true;
@@ -48,6 +56,7 @@ class CharacterSelectors {
                     break;
                 default:
                     this.parts.push(codePoint);
+                    justEndRange = false;
             }
         });
         if (escape) {
