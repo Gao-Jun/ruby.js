@@ -79,7 +79,7 @@ ruby('foo', s => s.upcase().center(9)) // return ***FOO***
 - [x] to_str => toStr
 - [ ] to_sym => toSym
 - [x] tr
-- [ ] tr_s => trS
+- [x] tr_s => trS
 - [ ] undump
 - [x] upcase
 - [ ] upto

@@ -292,6 +292,55 @@ class RubyString extends RubyObject<string> {
         return new RubyString(result);
     }
 
+    /**
+     * Like String#tr, but also squeezes the modified portions of the translated string; returns a new string
+     * (translated and squeezed).
+     */
+    trS(selector:string, replacement:string):RubyString {
+        const selectorCs = new CharacterSelectors(selector);
+        const replacementCs = new CharacterSelectors(replacement);
+        const replacementChars = [...new CharacterSelectors(replacement)];
+        let lastCharOfReplacement = '';
+        let trMap:Map<string, string> = new Map();
+        if (selectorCs.negation) {
+            lastCharOfReplacement = replacementChars[replacementChars.length - 1];
+        } else {
+            const selectorChars = [...new CharacterSelectors(selector)]
+            const zipArray: Array<[string, string]> = selectorChars.map((char, index) => {
+                if (index < replacementChars.length) {
+                    return [char, replacementChars[index]];
+                } else {
+                    return [char, replacementChars[replacementChars.length - 1]];
+                }
+            });
+            trMap = new Map(zipArray);
+        }
+
+        let inMatch = false;
+        let lastReplacement = '';
+        const resultArray: Array<string> = [];
+        for (const char of this.js) {
+            if (selectorCs.match(char)) {
+                const replaceChar = selectorCs.negation ? lastCharOfReplacement : trMap.get(char) || char;
+                if (inMatch) {
+                    if (replaceChar !== lastReplacement) {
+                        resultArray.push(replaceChar);
+                        lastReplacement = replaceChar;
+                    }
+                } else { // first char of potention replace group
+                    resultArray.push(replaceChar);
+                    lastReplacement = replaceChar;
+                    inMatch = true;
+                }
+            } else {
+                resultArray.push(char);
+                inMatch = false;
+            }
+        }
+        return new RubyString(resultArray.join(''));
+    }
+    tr_s = this.trS;
+
     toS():RubyString {
         return new RubyString(this.js);
     }

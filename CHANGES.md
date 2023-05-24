@@ -13,6 +13,7 @@
   - ➕ `String#delete`
   - ➕ `String#squeeze`
   - ➕ `String#tr`
+  - ➕ `String#trS` / `String#tr_s`
 
 ## 0.0.2 (2023-05-10)
 
