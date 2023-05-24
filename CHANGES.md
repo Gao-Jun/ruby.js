@@ -11,6 +11,7 @@
   - ➕ `String#deleteSuffix` / `String#delete_suffix`
   - ➕ `String#count`
   - ➕ `String#delete`
+  - ➕ `String#empty` / `String#isEmpty`
   - ➕ `String#squeeze`
   - ➕ `String#tr`
   - ➕ `String#trS` / `String#tr_s`

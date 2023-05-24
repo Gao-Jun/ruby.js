@@ -32,7 +32,7 @@ ruby('foo', s => s.upcase().center(9)) // return ***FOO***
 - [ ] each_char => eachChar
 - [ ] each_codepoint => eachCodepoint
 - [ ] each_line => eachLine
-- [ ] empty? => empty / isEmpty
+- [x] empty? => empty / isEmpty
 - [x] end_with? => end_with / endWith / isEndWith
 - [ ] eql? => eql / isEql
 - [ ] gsub

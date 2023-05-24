@@ -194,6 +194,15 @@ class RubyString extends RubyObject<string> {
         return new RubyString(result);
     }
 
+    /*
+     * Returns true if the length of self is zero, false otherwise
+     */
+    empty():RubyBoolean {
+        const result = this.js.length === 0;
+        return new RubyBoolean(result);
+    }
+    isEmpty = this.empty;
+
     /**
      * Returns whether self ends with any of the given strings.
      * Returns true if any given string matches the end, false otherwise:
