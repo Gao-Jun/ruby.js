@@ -269,10 +269,10 @@ class RubyString extends RubyObject<string> {
      *
      * And so on.
      */
-    tr(selector:string, replacements:string):RubyString {
+    tr(selector:string, replacement:string):RubyString {
         const selectorCs = new CharacterSelectors(selector);
-        const replacementCs = new CharacterSelectors(replacements);
-        const replacementChars = [...new CharacterSelectors(replacements)];
+        const replacementCs = new CharacterSelectors(replacement);
+        const replacementChars = [...new CharacterSelectors(replacement)];
         if (selectorCs.negation) {
             const lastCharOfReplacement = replacementChars[replacementChars.length - 1];
             const result = [...this.js].map(c => selectorCs.match(c) ? lastCharOfReplacement : c).join('');
